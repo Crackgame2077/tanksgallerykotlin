@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">tanks</string>
+
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+
+    <string name="t_72b">T-72B</string>
+    <string name="desT72b">T-72B</string>
+
+    <string name="t_72b3">T-72B3</string>
+    <string name="desT72b3">T-72B3</string>
+
+    <string name="t_90a">T-90A</string>
+    <string name="desT90a">T-90A</string>
+
+    <string name="t_90m">T-90M</string>
+    <string name="desT90m">T-90M</string>
+
+</resources>
