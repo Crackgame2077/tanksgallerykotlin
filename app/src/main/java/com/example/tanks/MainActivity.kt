@@ -49,6 +49,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun tanksApp() {
     var currentStep by remember { mutableStateOf(1) }
+    var previousStep by remember { mutableStateOf(1) }
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -58,25 +59,53 @@ fun tanksApp() {
                 textID = R.string.t_72b,
                 imageID = R.drawable.t_72b,
                 descriptionID = R.string.desT72b,
-                onImageClick = { currentStep = 2 }
+                nextStep = { currentStep = 2 }
             )
             2 -> TextandImage(
                 textID = R.string.t_90a,
                 imageID = R.drawable.t_90a,
                 descriptionID = R.string.desT90a,
-                onImageClick = { currentStep = 3 }
+                nextStep = { currentStep = 3 }
             )
             3 -> TextandImage(
                 textID = R.string.t_90m,
                 imageID = R.drawable.t_90m,
                 descriptionID = R.string.desT90m,
-                onImageClick = { currentStep = 4 }
+                nextStep = { currentStep = 4 }
             )
             4 -> TextandImage(
                 textID = R.string.t_72b3,
                 imageID = R.drawable.t_72b3,
                 descriptionID = R.string.desT72b3,
-                onImageClick = { currentStep = 1 }
+                nextStep = { currentStep = 1 }
+            )
+
+        }
+
+        when (previousStep) {
+            1 -> TextandImage(
+                textID = R.string.t_72b,
+                imageID = R.drawable.t_72b,
+                descriptionID = R.string.desT72b,
+                previousStep = { currentStep = 2 }
+            )
+            2 -> TextandImage(
+                textID = R.string.t_90a,
+                imageID = R.drawable.t_90a,
+                descriptionID = R.string.desT90a,
+                previousStep = { currentStep = 2 }
+            )
+            3 -> TextandImage(
+                textID = R.string.t_90m,
+                imageID = R.drawable.t_90m,
+                descriptionID = R.string.desT90m,
+                previousStep = { currentStep = 2 }
+            )
+            4 -> TextandImage(
+                textID = R.string.t_72b3,
+                imageID = R.drawable.t_72b3,
+                descriptionID = R.string.desT72b3,
+                previousStep = { currentStep = 2 }
             )
 
         }
@@ -88,7 +117,8 @@ fun TextandImage(
     textID : Int,
     imageID : Int,
     descriptionID : Int,
-    onImageClick : () -> Unit,
+    nextStep : () -> Unit,
+    previousStep : () -> Unit,
     modifier: Modifier = Modifier
 ){
     Column(
@@ -113,12 +143,12 @@ fun TextandImage(
         Spacer(modifier = Modifier.height(50.dp))
         Row(){
             Button(
-                onClick = { onImageClick() },
+                onClick = { nextStep() },
             ) {
                 Text(text = stringResource(R.string.next), fontSize = 24.sp)
             }
             Button(
-                onClick = { onImageClick() },
+                onClick = { previousStep() },
             ) {
                 Text(text = stringResource(R.string.previous), fontSize = 24.sp)
             }
